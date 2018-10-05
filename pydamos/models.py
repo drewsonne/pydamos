@@ -1,5 +1,25 @@
 import json
 
+# Create default cache location
+from pathlib import Path
+
+
+class Configuration(object):
+    cache_location = "~/.cache/pydamos/"
+
+    def __init__(self):
+        path = Path(self.cache_location)
+        path.mkdir(parents=True)
+
+    def set_cache_location(self, new_location):
+        self.cache_location = new_location
+        self.init_cache()
+
+    def init_cache(self):
+        self.cache = pyfscache.FSCache(
+            self.cache_location,
+            days=13, hours=4, minutes=2.5)
+
 
 class Clienter(object):
     def __init__(self, client: 'Client' = None):
@@ -132,3 +152,5 @@ class DamosRoot(Clienter):
 
     def __iter__(self):
         return iter(self.items())
+
+_config = Configuration()

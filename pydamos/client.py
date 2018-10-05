@@ -38,7 +38,7 @@ class Client(object):
             path=path
         )
 
-    @lru_cache(maxsize=256)
+    @_config.(maxsize=256)
     def get(self, path, cls=None):
         return self._do_call('GET', path=path, cls=cls)
 

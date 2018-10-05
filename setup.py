@@ -11,7 +11,7 @@ setup(
     description='Python library to interact with DĀMOS ',
     install_requires=[
         'requests',
-        'jsonstruct'
+        'pyfscache'
     ],
     python_requires='>3.6',
 
